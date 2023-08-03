@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        :root {
+  --clr-base-400: #5E5E5E;
+  --clr-base-500: #494949;
+
+  --clr-ui-300: #F8E2FF;
+  --clr-ui-400: #580D3A;
+  --clr-ux-300: #E2FFEA;
+  --clr-ux-400: #115926;
+  --clr-dev-300: #E2FCFF;
+  --clr-dev-400: #024F4F;
+
+  --clr-accent-400: #7E47C5;
+
+  --ff-accent: "Podkova", serif;
+  --ff-base: "Open Sans", sans-serif;
+
+  --fs-300: 0.75rem;
+  --fs-400: 1rem;
+  --fs-500: 2rem;
+  --fs-700: 2.5rem;
+
+  --fw-400: 400;
+  --fw-700: 700;
+
+  --shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.1);
+  --border-radius: 0.75rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+img {
+  display: block;
+}
+
+body {
+  font-family: var(--ff-base);
+  line-height: 1.6;
+  font-size: var(--fs-400);
+  color: var(--clr-base-400);
+}
+
+section {
+  padding: 3em 0;
+}
+
+h1 {
+  margin: 0;
+  line-height: 1.5;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: var(--fs-700);
+  font-weight: var(--fw-700);
+  font-family: var(--ff-accent);
+}
+
+.ux {
+  --bg: var(--clr-ux-300);
+  --fg: var(--clr-ux-400);
+}
+
+.ui {
+  --bg: var(--clr-ui-300);
+  --fg: var(--clr-ui-400);
+}
+
+.dev {
+  --bg: var(--clr-dev-300);
+  --fg: var(--clr-dev-400);
+}
+
+.tag {
+  font-size: var(--fs-300);
+  font-weight: var(--fw-700);
+  display: inline-block;
+  padding: 0.15em 0.75em;
+  border-radius: 100vw;
+  margin-right: 0.5em;
+  background: var(--bg, lightgray);
+  color: var(--fg, #333);
+}
+
+.btn {
+  display: inline-block;
+  cursor: pointer;
+  padding: 0.5em 3em;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: var(--fg, #fff);
+  background: var(--bg, var(--clr-accent-400));
+  border-radius: var(--border-radius);
+}
+
+.btn:hover,
+.btn:focus {
+  opacity: 0.9;
+}
+
+.candidate {
+  padding: 1em;
+}
+
+.candidate>img {
+  border-radius: var(--border-radius);
+}
+
+.candidate .name,
+.candidate .roles,
+.candidate .bio {
+  margin: 0;
+}
+
+.candidate .name {
+  font-family: var(--ff-accent);
+  font-size: var(--fs-500);
+  color: var(--clr-base-500);
+  line-height: 1;
+}
+
+.candidate .roles {
+  line-height: 1;
+  font-size: var(--fs-300);
+}
+
+.candidate .social {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 0;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.candidate .social a:hover,
+.candidate .social a:focus {
+  opacity: 0.5;
+}
+
+.candidate .btn {
+  align-self: end;
+  justify-self: end;
+}
+
+/*
+====================
+Layout
+====================
+*/
+
+.candidates {
+  max-width: 70em;
+  margin: 0 auto;
+  padding: 2em;
+  display: grid;
+  gap: 2em;
+}
+
+.candidate {
+  margin-left: auto;
+  margin-right: auto;
+  display: grid;
+  grid-template-areas:
+    "img social"
+    "name name"
+    "role role"
+    "bio bio"
+    "button button";
+  gap: 0.5em;
+  box-shadow: var(--shadow);
+  border-radius: var(--border-radius);
+}
+
+@media (min-width: 540px) {
+  .candidate {
+    grid-template-columns: min-content minmax(15rem, 22.5rem);
+    grid-template-rows: min-content min-content 1fr auto;
+    grid-template-areas:
+      "img name"
+      "img role"
+      "img bio"
+      "social button";
+  }
+}
+
+@media (min-width: 1020px) {
+  .candidates {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.candidate img {
+  grid-area: img;
+}
+
+.candidate .name {
+  grid-area: name;
+}
+
+.candidate .roles {
+  grid-area: role;
+}
+
+.candidate .bio {
+  grid-area: bio;
+}
+
+.candidate .social {
+  grid-area: social;
+}
+
+.candidate .btn {
+  grid-area: button;
+}
+    </style>
+</head>
+<body>
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Podkova:wght@700&display=swap" rel="stylesheet">
+      </head>
+      
+      <body>
+        <section>
+      
+          <h1>UX & UI Designer</h1>
+      
+          <div class="candidates">
+      
+            <!-- Candidate 1 -->
+            <div class="candidate">
+              <h2 class="name">John Smith</h2>
+              <img src="https://i.postimg.cc/tJtPkThY/john.jpg" alt="john">
+              <p class="roles">
+                <span class="tag ui">UI Design</span><span class="tag ux">UX Design</span>
+              </p>
+              <p class="bio">
+                With award winning designs at several agencies and 18 years
+                of experiences, John brings the full package to your team.
+              </p>
+              <ul class="social">
+                <li><a aria-label="dribbble" href="#"><img src="https://i.postimg.cc/NMWFXwSL/dribbble.png"></a></li>
+                <li><a aria-label="twitter" href="#"><img src="https://i.postimg.cc/V6S55N73/twitter.png"></a></li>
+                <li><a aria-label="instagram" href="#"><img src="https://i.postimg.cc/8c0Ft67k/instagram.png"></a></li>
+              </ul>
+              <a href="#" class="btn">Hire</a>
+            </div>
+      
+            <!-- Candidate 2 -->
+            <div class="candidate">
+              <h2 class="name">Kenan Karaman</h2>
+              <img src="https://i.postimg.cc/Y0wYQgL5/karaman.jpg" alt="karaman">
+              <p class="roles"><span class="tag ux">UX Design</span></p>
+              <p class="bio">I’m energetic, hard working and quick to learn!</p>
+              <ul class="social">
+                <li><a aria-label="dribbble" href="#"><img src="https://i.postimg.cc/NMWFXwSL/dribbble.png"></a></li>
+                <li><a aria-label="twitter" href="#"><img src="https://i.postimg.cc/V6S55N73/twitter.png"></a></li>
+                <li><a aria-label="instagram" href="#"><img src="https://i.postimg.cc/8c0Ft67k/instagram.png"></a></li>
+              </ul>
+              <a href="#" class="btn">Hire</a>
+            </div>
+      
+            <!-- Candidate 3 -->
+            <div class="candidate">
+              <h2 class="name">David Watson</h2>
+              <img src="https://i.postimg.cc/RFJL74sH/raymond.jpg" alt="david">
+              <p class="roles">
+                <span class="tag ui">UI Design</span><span class="tag ux">UX Design</span>
+              </p>
+              <p class="bio">
+                Eget nulla pulvinar arcu pellentesque ipsum at id dapibus
+                vestibulum egestas sodales nec nulla nunc interdum posuere aliquet.
+              </p>
+              <ul class="social">
+                <li><a aria-label="dribbble" href="#"><img src="https://i.postimg.cc/NMWFXwSL/dribbble.png"></a></li>
+                <li><a aria-label="twitter" href="#"><img src="https://i.postimg.cc/V6S55N73/twitter.png"></a></li>
+                <li><a aria-label="instagram" href="#"><img src="https://i.postimg.cc/8c0Ft67k/instagram.png"></a></li>
+              </ul>
+              <a href="#" class="btn">Hire</a>
+            </div>
+      
+            <!-- Candidate 4 -->
+            <div class="candidate">
+              <h2 class="name">Winston Millington</h2>
+              <img src="https://i.postimg.cc/8CjRGTV0/winston.jpg" alt="winston">
+              <p class="roles">
+                <span class="tag ui">UI Design</span><span class="tag dev">Developer</span>
+              </p>
+              <p class="bio">
+                Ante risus gravida vitae aliquet tristique libero, at blandit volutpat, viverra.
+              </p>
+              <ul class="social">
+                <li><a aria-label="dribbble" href="#"><img src="https://i.postimg.cc/NMWFXwSL/dribbble.png"></a></li>
+                <li><a aria-label="twitter" href="#"><img src="https://i.postimg.cc/V6S55N73/twitter.png"></a></li>
+                <li><a aria-label="instagram" href="#"><img src="https://i.postimg.cc/8c0Ft67k/instagram.png"></a></li>
+              </ul>
+              <a href="#" class="btn">Hire</a>
+            </div>
+      
+            <!-- Candidate 5 -->
+            <div class="candidate">
+              <h2 class="name">Alex Miller</h2>
+              <img src="https://i.postimg.cc/KYwnvCGv/alex.jpg" alt="alex">
+              <p class="roles"><span class="tag ux">UX Design</span></p>
+              <p class="bio">Amet magna amet venenatis purus donec eget ultricies urna.</p>
+              <ul class="social">
+                <li><a aria-label="dribbble" href="#"><img src="https://i.postimg.cc/NMWFXwSL/dribbble.png"></a></li>
+                <li><a aria-label="twitter" href="#"><img src="https://i.postimg.cc/V6S55N73/twitter.png"></a></li>
+                <li><a aria-label="instagram" href="#"><img src="https://i.postimg.cc/8c0Ft67k/instagram.png"></a></li>
+              </ul>
+              <a href="#" class="btn">Hire</a>
+            </div>
+      
+            <!-- Candidate 6 -->
+            <div class="candidate">
+              <h2 class="name">Raymond Smith</h2>
+              <img src="https://i.postimg.cc/RFJL74sH/raymond.jpg" alt="raymond">
+              <p class="roles"><span class="tag ui">UI Design</span></p>
+              <p class="bio">
+                Tincidunt urna eu posuere lobortis cursus neque quam nulla
+                fringilla pellentesque egestas sem libero aliquam commodo
+              </p>
+              <ul class="social">
+                <li><a aria-label="dribbble" href="#"><img src="https://i.postimg.cc/NMWFXwSL/dribbble.png"></a></li>
+                <li><a aria-label="twitter" href="#"><img src="https://i.postimg.cc/V6S55N73/twitter.png"></a></li>
+                <li><a aria-label="instagram" href="#"><img src="https://i.postimg.cc/8c0Ft67k/instagram.png"></a></li>
+              </ul>
+              <a href="#" class="btn">Hire</a>
+            </div>
+      
+          </div>
+      
+        </section>
+      </body>
+</body>
+</html>
